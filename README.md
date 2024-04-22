@@ -30,6 +30,28 @@ MS COCO
 
 <!-- tiny, small, and medium models will be released after the paper be accepted and published. -->
 
+
+# Docker Setup for Model Training
+
+This guide provides instructions on how to build and run a Docker container for model training purposes. This setup encapsulates the training environment, ensuring consistency across different machines.
+
+## Prerequisites
+
+Ensure you have Docker and Docker Compose installed on your machine. These tools are required to build and manage the containers. For installation instructions, please visit:
+- [Docker](https://docs.docker.com/get-docker/)
+- [Docker Compose](https://docs.docker.com/compose/install/)
+
+## Getting Started
+
+### Build the Docker Image
+
+Use the following command to build the Docker image and run it. This process may take a few minutes as it sets up the environment and dependencies:
+
+```bash
+sudo docker-compose up --build
+
+
+
 ## Useful Links
 
 <details><summary> <b>Expand</b> </summary>
