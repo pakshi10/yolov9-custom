@@ -44,11 +44,25 @@ Ensure you have Docker and Docker Compose installed on your machine. These tools
 ## Getting Started
 
 ### Build the Docker Image
-
+Tested on Ubuntu 20.04
 Use the following command to build the Docker image and run it. This process may take a few minutes as it sets up the environment and dependencies:
 
 ```bash
 sudo docker-compose up --build
+```
+This command executes the Docker Compose file, docker-compose.yml, which should be configured to build the Docker image based on the provided Dockerfile and run the container.
+### Accessing the Docker Container
+
+Once the container is running, you can access its bash shell to interact with the training environment directly:
+```bash
+sudo docker exec -it [docker_image_name] bash
+```
+Replace [docker_image_name] with the actual name of your Docker image. You can find the image name by running docker images if you are unsure of the name.
+
+Using the Container
+
+Inside the container, you can execute commands and scripts to start training models or perform any required tasks. The environment is isolated, which helps in maintaining consistency regardless of the underlying host system.
+
 
 
 
