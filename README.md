@@ -30,6 +30,64 @@ MS COCO
 
 <!-- tiny, small, and medium models will be released after the paper be accepted and published. -->
 
+
+# Docker Setup for Model Training
+
+This guide provides instructions on how to build and run a Docker container for model training purposes. This setup encapsulates the training environment, ensuring consistency across different machines.
+
+## Prerequisites
+
+Ensure you have Docker and Docker Compose installed on your machine. These tools are required to build and manage the containers. For installation instructions, please visit:
+- [Docker](https://docs.docker.com/get-docker/)
+- [Docker Compose](https://docs.docker.com/compose/install/)
+
+## Getting Started
+
+### Build the Docker Image
+Tested on Ubuntu 20.04
+Use the following command to build the Docker image and run it. This process may take a few minutes as it sets up the environment and dependencies:
+
+```bash
+sudo docker-compose up --build
+```
+This command executes the Docker Compose file, docker-compose.yml, which should be configured to build the Docker image based on the provided Dockerfile and run the container.
+### Accessing the Docker Container
+
+Once the container is running, you can access its bash shell to interact with the training environment directly:
+```bash
+sudo docker exec -it [docker_image_name] bash
+```
+Replace [docker_image_name] with the actual name of your Docker image. You can find the image name by running docker images if you are unsure of the name.
+
+Using the Container
+
+Inside the container, you can execute commands and scripts to start training models or perform any required tasks. The environment is isolated, which helps in maintaining consistency regardless of the underlying host system.
+
+
+## Model Training Setup with Docker container
+
+This guide provides detailed instructions on setting up Docker for model training, modifying model parameters through a configuration file, and managing dataset specifications for successful training.
+
+## Configuration and Dataset
+
+### Configuring the Model
+
+The model's parameters can be adjusted by editing the `config.yaml` file. This file contains various settings that can be customized to fit specific training needs, including learning rates, batch sizes, and other model-specific parameters. It's essential to review and modify this file to ensure the model trains correctly according to your requirements.
+
+### Preparing the Data
+
+Data for training is located in the `data/fashion` directory. The dataset's details and format are described in the `data.yaml` file. Notably, due to a current limitation with the YOLO model format, you must include a placeholder class (`NA`) as the first class in your dataset. This is because YOLO indexes classes from `0` to `nc-1`, and the absence of any images for the first class (`0`) is presently treated as a bug.
+
+This workaround is temporary, and a planned future update to the `cocotoyolo.py` script will resolve this issue by adjusting how classes are handled.
+
+## Training the Model
+
+To start training the model with the specified configurations and prepared data, run the following command from the root directory of your project:
+
+```bash
+python segment/train_with_config.py
+```
+
 ## Useful Links
 
 <details><summary> <b>Expand</b> </summary>
