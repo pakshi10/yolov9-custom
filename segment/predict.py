@@ -24,9 +24,9 @@ from utils.torch_utils import select_device, smart_inference_mode
 
 @smart_inference_mode()
 def run(
-    weights=ROOT / 'yolo-seg.pt',  # model.pt path(s)
-    source=ROOT / 'data/images',  # file/dir/URL/glob/screen/0(webcam)
-    data=ROOT / 'data/coco.yaml',  # dataset.yaml path
+    weights='runs/train-seg/exp7/weights.best.pt',  # model.pt path(s)
+    source='data/fashion/test/images/',  # file/dir/URL/glob/screen/0(webcam)
+    data='data.yaml',  # dataset.yaml path
     imgsz=(640, 640),  # inference size (height, width)
     conf_thres=0.25,  # confidence threshold
     iou_thres=0.45,  # NMS IOU threshold
@@ -123,7 +123,7 @@ def run(
             imc = im0.copy() if save_crop else im0  # for save_crop
             annotator = Annotator(im0, line_width=line_thickness, example=str(names))
             if len(det):
-                masks = process_mask(proto[i], det[:, 6:], det[:, :4], im.shape[2:], upsample=True)  # HWC
+                masks = process_mask(proto[-1][i], det[:, 6:], det[:, :4], im.shape[2:], upsample=True)  # HWC
                 det[:, :4] = scale_boxes(im.shape[2:], det[:, :4], im0.shape).round()  # rescale boxes to im0 size
 
                 # Segments

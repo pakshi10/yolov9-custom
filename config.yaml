@@ -1,4 +1,4 @@
-weights: 'yolov9-c-seg.pt'
+weights: 'models/segment/yolov9-c-seg.pt'
 cfg: 'models/segment/yolov9-c-dseg.yaml'
 data: 'data.yaml'
 hyp: 'hyp.scratch-high.yaml'
